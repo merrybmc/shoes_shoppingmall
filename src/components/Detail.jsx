@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { data } from '../data.js';
 import { useParams, useNavigate } from 'react-router';
+import { Nav } from 'react-bootstrap';
 
 export default function Detail() {
   const navigate = useNavigate();
   const [count, setCount] = useState(0);
   const [timer, setTimer] = useState(false);
+  const [tab, setTab] = useState(0);
 
   // useEffect는 html 렌더링이 끝난 후 동작한다.
   // mount시 실행
@@ -57,6 +59,26 @@ export default function Detail() {
           </button>
         </div>
       </div>
+      <Nav variant='tabs' defaultActiveKey='link0'>
+        <Nav.Item>
+          <Nav.Link eventKey='link0' onClick={() => setTab(0)}>
+            버튼0
+          </Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link eventKey='link1' onClick={() => setTab(1)}>
+            버튼1
+          </Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link eventKey='link2' onClick={() => setTab(2)}>
+            버튼2
+          </Nav.Link>
+        </Nav.Item>
+      </Nav>
+      {tab === 0 && <div>내용0</div>}
+      {tab === 1 && <div>내용1</div>}
+      {tab === 2 && <div>내용2</div>}
     </div>
   );
 }
