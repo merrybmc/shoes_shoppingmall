@@ -5,6 +5,7 @@ import Mainpage from '../pages/Mainpage';
 import About from '../components/About';
 import Member from '../components/Member';
 import Location from '../components/Location';
+import Cart from '../components/Cart';
 
 export default function Router() {
   return (
@@ -15,6 +16,8 @@ export default function Router() {
 
       {/* Route로 설정된 페이지 외의 모든 페이지 */}
       <Route path='*' element={<div>잘못된 접근입니다.</div>} />
+
+      <Route path='/cart' element={<Cart />} />
 
       {/* nested routes */}
       <Route path='/about' element={<About />}>

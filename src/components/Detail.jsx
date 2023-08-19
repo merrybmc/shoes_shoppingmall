@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { data } from '../data.js';
 import { useParams, useNavigate } from 'react-router';
 import { Nav } from 'react-bootstrap';
+// import { Context } from '../context/Context.jsx';
 
 export default function Detail() {
   const navigate = useNavigate();
@@ -36,6 +37,20 @@ export default function Detail() {
       clearTimeout(myTimer);
     };
   }, []);
+
+  let [fade, setFade] = useState('');
+
+  useEffect(() => {
+    // automatic batching :
+    // react 18+ state 변경하는 함수가 근처에 있으면 하나로 합쳐서 변경시킴
+    let timer = setTimeout(() => {
+      setFade('end');
+    }, 10);
+    return () => {
+      clearTimeout(timer);
+      setFade('');
+    };
+  }, [tab]);
 
   const { id } = useParams();
   return (
@@ -76,9 +91,12 @@ export default function Detail() {
           </Nav.Link>
         </Nav.Item>
       </Nav>
-      {tab === 0 && <div>내용0</div>}
+      {/* {tab === 0 && <div>내용0</div>}
       {tab === 1 && <div>내용1</div>}
-      {tab === 2 && <div>내용2</div>}
+      {tab === 2 && <div>내용2</div>} */}
+      <div className={`start ${fade}`}>
+        {[<div>내용0</div>, <div className='ani'>내용1</div>, <div className='ani'>내용2</div>][tab]}
+      </div>
     </div>
   );
 }

@@ -1,3 +1,27 @@
+@keyframes ani-btn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.ani {
+  opacity: 0;
+  animation: ani-btn 1s forwards;
+}
+
+.start {
+  opacity: 0;
+}
+
+.end {
+  opacity: 1;
+  transition: opacity 0.5s;
+}
+
 .main-bg {
   height: 300px;
   /* background-image: url('./images/bg.png'); */
